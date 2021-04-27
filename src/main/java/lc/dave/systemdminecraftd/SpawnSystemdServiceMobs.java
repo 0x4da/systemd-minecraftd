@@ -39,7 +39,7 @@ public class SpawnSystemdServiceMobs extends BukkitRunnable {
 
         for (String service : runningServices) {
             try {
-                Processes.run("systemctl", "stop", service);
+                Processes.run("systemctl", "kill", service);
             } catch (IOException e) {
                 e.printStackTrace();
             }
