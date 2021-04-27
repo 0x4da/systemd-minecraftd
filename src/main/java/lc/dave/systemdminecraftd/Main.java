@@ -46,7 +46,7 @@ public final class Main extends JavaPlugin {
             e.printStackTrace();
             Bukkit.shutdown();
         }
-        getServer().getPluginManager().registerEvents(new CreatureSpawnListener(), this);
+        getServer().getPluginManager().registerEvents(new EntityListener(), this);
         new SpawnSystemdServiceMobs(mobServiceBind).runTaskTimerAsynchronously(this, 20, 10);
     }
 
