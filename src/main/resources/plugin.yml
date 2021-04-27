@@ -1,0 +1,4 @@
+name: systemd-minecraftd
+version: @version@
+main: lc.dave.systemdminecraftd.Main
+api-version: 1.16
