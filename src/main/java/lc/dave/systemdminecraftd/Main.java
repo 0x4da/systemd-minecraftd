@@ -29,6 +29,8 @@ public final class Main extends JavaPlugin {
             entity.remove();
         }
 
+        mobServiceBind = new MobServiceBind(this);
+
         try {
             String output = Processes.run("systemctl");
             World world = Bukkit.getWorld("world");
@@ -44,8 +46,6 @@ public final class Main extends JavaPlugin {
             e.printStackTrace();
             Bukkit.shutdown();
         }
-
-        mobServiceBind = new MobServiceBind(this);
         getServer().getPluginManager().registerEvents(new CreatureSpawnListener(), this);
         new SpawnSystemdServiceMobs(mobServiceBind).runTaskTimer(this, 20, 10);
     }
