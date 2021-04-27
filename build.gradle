@@ -2,6 +2,7 @@ import org.apache.tools.ant.filters.ReplaceTokens
 
 plugins {
     id 'java'
+    id 'com.github.johnrengelman.shadow' version '5.2.0'
 }
 
 group = 'lc.dave'
@@ -20,9 +21,14 @@ repositories {
         name = 'sonatype'
         url = 'https://oss.sonatype.org/content/groups/public/'
     }
+    maven {
+        name = 'aikar'
+        url = 'https://repo.aikar.co/content/groups/aikar/'
+    }
 }
 
 dependencies {
+    implementation 'co.aikar:acf-paper:0.5.0-SNAPSHOT'
     compileOnly 'com.destroystokyo.paper:paper-api:1.16.5-R0.1-SNAPSHOT'
 }
 
@@ -30,4 +36,12 @@ processResources {
     from(sourceSets.main.resources.srcDirs) {
         filter ReplaceTokens, tokens: [version: version]
     }
+}
+
+shadowJar {
+    relocate 'co.aikar.commands', 'lc.dave.systemdminecraftd.acf'
+    relocate 'co.aikar.locales', 'lc.dave.systemdminecraftd.locales'
+    archiveBaseName.set('systemd-minecraftd')
+    archiveClassifier.set('')
+    archiveVersion.set('')
 }
